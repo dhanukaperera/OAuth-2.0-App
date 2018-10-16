@@ -19,16 +19,16 @@ user = {
 
 repos = []
 
-
-
 @app.route('/')
 def index():
     return render_template('login.html')
 
 @app.route('/profile')
 def profile():    
-    print(repos)
-    return render_template('profile.html',user= user,repos=repos)
+    if len(repos) != 0:
+        return render_template('profile.html',user= user,repos=repos)
+    return redirect(url_for('index'))
+
 
 @app.route('/github')
 def github_login():
@@ -41,13 +41,10 @@ def github_login():
     if account_info.ok:
         account_info_json = account_info.json()
         repo_info_json = repo_info.json()
-        print(len(repo_info_json))
        
         for r in repo_info_json :
-            
             repos.append({"name":r.get('name'),"url":r.get('html_url')})
        
-
         user['name'] = account_info_json.get('name')
         user['login'] = account_info_json.get('login')
         user['avatar_url'] = account_info_json.get('avatar_url')
@@ -55,11 +52,6 @@ def github_login():
 
 
         return redirect(url_for('profile'))
-
-        #redirect(url_for('github'))
-        #return '<h1>Your Github name is {} '.format(account_info_json['login'] )
-        #return render_template('github.html',name=account_info.get('name'))
-
 
     return redirect(url_for('github.login'))
 
