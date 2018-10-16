@@ -13,7 +13,8 @@ app.register_blueprint(github_blueprint, url_prefix='/github_login')
 user = {
     "name" : '',
     "login" :'',
-    "avatar_url":''
+    "avatar_url":'',
+    "bio":''
 }
 
 repos = []
@@ -44,12 +45,13 @@ def github_login():
        
         for r in repo_info_json :
             
-            repos.append({"name":r.get('name')})
+            repos.append({"name":r.get('name'),"url":r.get('html_url')})
        
 
         user['name'] = account_info_json.get('name')
         user['login'] = account_info_json.get('login')
         user['avatar_url'] = account_info_json.get('avatar_url')
+        user['bio'] = account_info_json.get('bio')
 
 
         return redirect(url_for('profile'))

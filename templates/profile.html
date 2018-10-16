@@ -38,6 +38,14 @@
                         <h1 class="title">{{user.name}}</h1>
                         <h2 class="subtitle">{{user.login}}</h2>
                 </div>
+
+                <div>
+                    <br>
+                    <strong>Bio</strong>
+                    <p>
+                        {{user.bio}}
+                    </p>
+                </div>
             </section>
         </div>
 
@@ -53,7 +61,7 @@
                        
                            
                             {% for repo in repos %}
-                            <a class="panel-block" href="">
+                            <a class="panel-block" target="_blank" href="{{repo.url}}">
                               <span class="panel-icon">
                                 <i class="fas fa-book" aria-hidden="true"></i>
                               </span>
