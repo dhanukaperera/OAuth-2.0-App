@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OAuth Demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+
+
+<body>
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="#">
+                <span class="icon is-medium">
+                    <i class="fab fa-github"></i>
+                </span> GitHub Profile Viewer - OAuth 2.0 Demo
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="columns">
+        <div class="column is-one-fifth" style="padding: 50px 0px 0px 50px">
+            <section>
+
+                <figure class="image is-128x128">
+                    <img class="is-rounded" src="{{user.avatar_url}}">
+                </figure>
+                <div style="padding-top: 10px">
+                        <h1 class="title">{{user.name}}</h1>
+                        <h2 class="subtitle">{{user.login}}</h2>
+                </div>
+            </section>
+        </div>
+
+
+
+        <div class="column">
+            <section>
+                    <nav class="panel">
+                            <p class="panel-heading">
+                              My Repositories
+                            </p>
+                           
+                       
+                           
+                            {% for repo in repos %}
+                            <a class="panel-block" href="">
+                              <span class="panel-icon">
+                                <i class="fas fa-book" aria-hidden="true"></i>
+                              </span>
+                             {{repo.name}}
+                            </a>
+                            {% endfor %}
+                            
+                           
+            </section>
+
+        </div>
+
+    </div>
+</body>
+
+</html>
